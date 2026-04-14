@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin, FaJava } from 'react-icons/fa';
 import { SiLeetcode, SiSpringboot } from 'react-icons/si';
 import { toast } from "react-toastify";
 
-const nameRegex= /^[A-Za-z]{2,}(?: [A-Za-z]{2,})*$/;
+const nameRegex = /^[A-Za-z]{2,}(?: [A-Za-z]{2,})*$/;
 const emailRegex = /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z][a-zA-Z0-9.-]*\.[a-zA-Z]{2,6}$/;
 
 const Contact = () => {
@@ -52,12 +52,13 @@ const Contact = () => {
     e.preventDefault();
     if (!isFormValid) return;
     setLoading(true);
+    console.log(import.meta.env);
 
     emailJs.send(
-      "service_x40c1kq",   // 👈 tera service ID
-      "template_e0qi9yb",  // 👈 yahan apna template ID daal
+      import.meta.env.VITE_EMAIL_SERVICE_ID,
+      import.meta.env.VITE_EMAIL_TEMPLATE_ID,
       form,
-      "opQBSJhbF_ORcYWtt"    // 👈 yahan apna public key daal
+      import.meta.env.VITE_EMAIL_PUBLIC_KEY
     )
       .then(() => {
         toast.success("Message sent successfully");
